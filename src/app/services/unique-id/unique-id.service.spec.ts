@@ -17,6 +17,8 @@ describe(UniqueIdService.name, () => {
   it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should generate id when called with prefix `, () => {
     const id = service.generateUniqueIdWithPrefix('app');
 
-    expect(id).toContain('app-');
+    //expect(id).toContain('app-'); // Muito amplo, aceitaria algo como: "blablabla-app-1"
+    // expect(id).toMatch(/^app-\d+/); // Utilizando regex
+    expect(id.startsWith('app-')).toBeTrue(); // Verifica se começa com 'app-'
   });
 });
