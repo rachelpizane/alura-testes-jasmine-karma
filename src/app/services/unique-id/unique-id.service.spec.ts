@@ -1,16 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Unique0idService } from './unique0id.service';
+import { UniqueIdService } from './unique-id.service';
 
-describe('Unique0idService', () => {
-  let service: Unique0idService;
+describe(UniqueIdService.name, () => {
+  let service: UniqueIdService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Unique0idService);
+    service = TestBed.inject(UniqueIdService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should generate id when called with prefix `, () => {
+    const id = service.generateUniqueIdWithPrefix('app');
+
+    expect(id).toContain('app-');
   });
 });
