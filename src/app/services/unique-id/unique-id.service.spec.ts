@@ -33,4 +33,21 @@ describe(UniqueIdService.name, () => {
 
     expect(ids.size).toBe(50); // Espero que o tamanho do conjunto seja 50, ou seja, não houve duplicatas
   });
+
+  it(`#${UniqueIdService.prototype.getNumberOfGeneratedIds.name} should return the number of generated Ids when called`, () => {
+    for (let i = 0; i < 2; i++) {
+      service.generateUniqueIdWithPrefix('app')
+    }
+    const numberOfGeneratedIds = service.getNumberOfGeneratedIds();
+
+    expect(numberOfGeneratedIds).toBe(2);
+  });
+
+  it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should throw error when called without prefix`, () => {
+      const emptyValues = [null, undefined, ''];
+
+      emptyValues.forEach((value) => {
+        expect(() => service.generateUniqueIdWithPrefix(value)).toThrowError('Prefix é obrigatório');
+      });
+  });
 });
