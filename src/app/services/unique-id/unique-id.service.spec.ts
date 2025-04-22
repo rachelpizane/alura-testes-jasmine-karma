@@ -44,10 +44,10 @@ describe(UniqueIdService.name, () => {
   });
 
   it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should throw error when called without prefix`, () => {
-      const emptyValues = [null, undefined, ''];
+      const emptyValues = [null, undefined, '', '0', '1'];
 
       emptyValues.forEach((value) => {
-        expect(() => service.generateUniqueIdWithPrefix(value)).toThrowError('Prefix é obrigatório');
+        expect(() => service.generateUniqueIdWithPrefix(value)).withContext(`Empty Value: ${value}`).toThrowError('Prefix é obrigatório');
       });
   });
 });

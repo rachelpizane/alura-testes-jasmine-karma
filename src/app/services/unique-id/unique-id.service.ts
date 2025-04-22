@@ -6,11 +6,12 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class UniqueIdService {
   private numberOfGeneratetedIds = 0;
+  private regexValidId = /^[A-Za-z]+[\w\-\:\.]*$/;
 
   constructor() { }
 
   generateUniqueIdWithPrefix(prefix: string): string {
-    if(!prefix) {
+    if(!prefix || !this.regexValidId.test(prefix)) {
       throw new Error('Prefix é obrigatório');
     }
 
