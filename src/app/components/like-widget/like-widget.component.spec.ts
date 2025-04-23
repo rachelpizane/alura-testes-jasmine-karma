@@ -25,17 +25,17 @@ describe(LikeWidgetComponent.name, () => {
     expect(component).toBeTruthy();
   });
 
-  it('should auto generate id when id input property is missing', () => {
+  it('Should auto-generate ID during ngOnInit when (@Input id) is NOT assigned', () => {
     expect(component.id).toBeTruthy();
   });
 
-  it('should not auto generate id when id input property is present', () => {
+  it('Should NOT auto-generate ID during ngOnInit when (@Input id) is assigned', () => {
     component.id = 'custom-id';
     fixture.detectChanges(); // Atualiza o template com as mudanças feitas no componente.
     expect(component.id).toBe('custom-id');
   });
 
-  it(`#${LikeWidgetComponent.prototype.like.name} should emit liked event`, () => {
+  it(`#${LikeWidgetComponent.prototype.like.name} should trigger (@Output liked) when called`, () => {
     spyOn(component.liked, 'emit'); // Espiona o evento liked para verificar se ele foi chamado.
     component.like();
     expect(component.liked.emit).toHaveBeenCalled(); // Verifica se o evento liked foi emitido.
