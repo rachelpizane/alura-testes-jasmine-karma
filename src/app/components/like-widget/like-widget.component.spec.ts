@@ -34,4 +34,10 @@ describe(LikeWidgetComponent.name, () => {
     fixture.detectChanges(); // Atualiza o template com as mudanças feitas no componente.
     expect(component.id).toBe('custom-id');
   });
+
+  it(`#${LikeWidgetComponent.prototype.like.name} should emit liked event`, () => {
+    spyOn(component.liked, 'emit'); // Espiona o evento liked para verificar se ele foi chamado.
+    component.like();
+    expect(component.liked.emit).toHaveBeenCalled(); // Verifica se o evento liked foi emitido.
+  });
 });
